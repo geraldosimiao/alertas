@@ -67,9 +67,9 @@ func main() {
 	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		fmt.Printf("Aviso #%d\n", i+1)
-		fmt.Printf("Título: %s\n", aviso.Título)
+		fmt.Printf("Título: %s\n", aviso.Title)
 		fmt.Printf("Link: %s\n", aviso.Link)
-		fmt.Printf("Data de Publicação: %s\n", aviso.DataPublicação)
+		fmt.Printf("Data de Publicação: %s\n", aviso.Published)
 		
 		fmt.Println("Detalhes:")
 		fmt.Printf("%-15s: %s\n", "Status", aviso.Status)
