@@ -16,6 +16,14 @@ type Aviso struct {
 	Link        string `xml:"link"`
 	Description string `xml:"description"`
 	Published   string `xml:"pubDate"`
+	Status      string `xml:"Status"`  // Corrigido para Status com a letra inicial em maiúsculo
+	Evento      string `xml:"Evento"`
+	Severidade  string `xml:"Severidade"`
+	Início      string `xml:"Início"`
+	Fim         string `xml:"Fim"`
+	Descrição   string `xml:"Descrição"`  // Adicionado o campo Descrição
+	Área        string `xml:"Área"`
+	LinkGráfico string `xml:"Link Gráfico"`  // Alterado para Link Gráfico
 }
 
 // Feed representa a estrutura de dados para um feed RSS
