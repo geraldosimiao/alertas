@@ -12,12 +12,12 @@ import (
 type Aviso struct {
     Title     string `xml:"title"`
     Link      string `xml:"link"`
-    Status    string `xml:"description>tr>th"`               // Modificado
-    Evento    string `xml:"description>tr:nth-child(2)>td"` // Modificado
-    Severidade string `xml:"description>tr:nth-child(3)>td"`
-    Início    string `xml:"description>tr:nth-child(4)>td"`
-    Fim       string `xml:"description>tr:nth-child(5)>td"`
-    Área      string `xml:"description>tr:nth-child(6)>td"`
+    Status    string `xml:"description>table>tr>th:nth-child(2)"`
+    Evento    string `xml:"description>table>tr:nth-child(2)>td"`
+    Severidade string `xml:"description>table>tr:nth-child(3)>td"`
+    Início    string `xml:"description>table>tr:nth-child(4)>td"`
+    Fim       string `xml:"description>table>tr:nth-child(5)>td"`
+    Área      string `xml:"description>table>tr:nth-child(6)>td"`
     Published string `xml:"pubDate"`
 }
 
