@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"time"
 )
 
 // Aviso representa a estrutura de dados para um aviso meteorológico
@@ -33,28 +32,28 @@ type Feed struct {
 }
 
 func obterAvisos(apiURL string) ([]Aviso, error) {
-    fmt.Printf("Fazendo solicitação para: %s\n", apiURL)
+	fmt.Printf("Fazendo solicitação para: %s\n", apiURL)
 
-    resposta, err := http.Get(apiURL)
-    if err != nil {
-        return nil, err
-    }
-    defer resposta.Body.Close()
+	resposta, err := http.Get(apiURL)
+	if err != nil {
+		return nil, err
+	}
+	defer resposta.Body.Close()
 
-    conteúdo, err := ioutil.ReadAll(resposta.Body)
-    if err != nil {
-        return nil, err
-    }
+	conteúdo, err := ioutil.ReadAll(resposta.Body)
+	if err != nil {
+		return nil, err
+	}
 
-    fmt.Printf("Resposta da API:\n%s\n", conteúdo)
+	fmt.Printf("Resposta da API:\n%s\n", conteúdo)
 
-    var feed Feed
-    err = xml.Unmarshal(conteúdo, &feed)
-    if err != nil {
-        return nil, err
-    }
+	var feed Feed
+	err = xml.Unmarshal(conteúdo, &feed)
+	if err != nil {
+		return nil, err
+	}
 
-    return feed.Channel.Items, nil
+	return feed.Channel.Items, nil
 }
 
 func main() {
