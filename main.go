@@ -146,35 +146,44 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Contador para avisos que atendem ao critério
+	avisosFiltrados := 0
+
 	// Exibir avisos que estão após a data de corte
 	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		// Converter a data de publicação para o tipo time.Time
 		dataPublicacao, err := time.Parse("Mon, 02 Jan 2006 15:04:05 -0700", aviso.Published)
-		if err == nil {
-			if dataPublicacao.After(dataCorte) {
-				fmt.Printf("Data de Publicação: %s\n", dataPublicacao.Format("Mon, 02 Jan 2006 15:04:05 -0700"))
-
-				fmt.Printf("Aviso #%d\n", i+1)
-				fmt.Printf("Título: %s\n", aviso.Title)
-				fmt.Printf("Link: %s\n", aviso.Link)
-				fmt.Printf("Data de Publicação: %s\n", aviso.Published)
-
-				// Extrair detalhes do HTML e exibir na ordem correta
-				detalhes := extrairDetalhesHTML(aviso.Description)
-				printField("Status", detalhes["Status"])
-				printField("Evento", detalhes["Evento"])
-				printField("Severidade", detalhes["Severidade"])
-				printField("Início", detalhes["Início"])
-				printField("Fim", detalhes["Fim"])
-				printField("Descrição", detalhes["Descrição"])
-				printField("Área", detalhes["Área"])
-				printField("Link Gráfico", detalhes["Link Gráfico"])
-
-				fmt.Println("-----")
-			}
-		} else {
+		if err != nil {
 			fmt.Println("Erro ao analisar a data de publicação:", err)
+			continue
+		}
+
+		// Verificar se a data de publicação está dentro do intervalo
+		if dataPublicacao.After(dataCorte) {
+			// Incrementar o contador de avisos filtrados
+			avisosFiltrados++
+
+			fmt.Printf("Aviso #%d\n", i+1)
+			fmt.Printf("Título: %s\n", aviso.Title)
+			fmt.Printf("Link: %s\n", aviso.Link)
+			fmt.Printf("Data de Publicação: %s\n", dataPublicacao.Format("Mon, 02 Jan 2006 15:04:05 -0700"))
+
+			// Extrair detalhes do HTML e exibir na ordem correta
+			detalhes := extrairDetalhesHTML(aviso.Description)
+			printField("Status", detalhes["Status"])
+			printField("Evento", detalhes["Evento"])
+			printField("Severidade", detalhes["Severidade"])
+			printField("Início", detalhes["Início"])
+			printField("Fim", detalhes["Fim"])
+			printField("Descrição", detalhes["Descrição"])
+			printField("Área", detalhes["Área"])
+			printField("Link Gráfico", detalhes["Link Gráfico"])
+
+			fmt.Println("-----")
 		}
 	}
+
+	// Exibir o total de avisos filtrados
+	fmt.Printf("Avisos filtrados: %d\n", avisosFiltrados)
 }
