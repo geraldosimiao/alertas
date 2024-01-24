@@ -16,3 +16,21 @@ Para compilar e executar um programa em Go, geralmente, você não precisa de mu
     Ambiente Go configurado: Verifique se o Go está instalado no seu sistema e se o seu ambiente Go está configurado corretamente. Certifique-se de ter o $GOPATH e $GOBIN definidos.
 
     Bibliotecas externas: Se você estiver usando bibliotecas externas, o Go baixará automaticamente as dependências necessárias durante o processo de compilação.
+
+## Como rodar o programa
+Abra um terminal numa pasta de sua preferência e rode o comando:
+
+    git clone https://github.com/geraldosimiao/alertas.git
+
+Em seguida entre na pasta criada:
+    
+    cd alertas
+    
+Para rodar o programa basta executar:
+
+    go run main.go <número de horas>
+
+Aqui um exemplo:
+
+    go run main.go 15
+(isso vai retornar os avisos do INMET nas últimas 15 horas)
