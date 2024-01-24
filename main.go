@@ -61,9 +61,18 @@ func main() {
 	}
 
 	// Adicione estas linhas para imprimir informações dos avisos
-	fmt.Printf("Avisos retornados: %d\n", len(avisos))
-	for _, aviso := range avisos {
-		fmt.Printf("Severidade: %s\n", aviso.Severidade)
-		// Adicione mais informações conforme necessário
-	}
+fmt.Printf("Avisos retornados: %d\n", len(avisos))
+for i, aviso := range avisos {
+	fmt.Printf("Aviso #%d\n", i+1)
+	fmt.Printf("Título: %s\n", aviso.Title)
+	fmt.Printf("Link: %s\n", aviso.Link)
+	fmt.Printf("Data de Publicação: %s\n", aviso.Published)
+	fmt.Printf("Status: %s\n", aviso.Status)
+	fmt.Printf("Evento: %s\n", aviso.Evento)
+	fmt.Printf("Severidade: %s\n", aviso.Severidade)
+	fmt.Printf("Início: %s\n", aviso.Início)
+	fmt.Printf("Fim: %s\n", aviso.Fim)
+	fmt.Printf("Área: %s\n", aviso.Área)
+	fmt.Println("-----")
+}
 }
