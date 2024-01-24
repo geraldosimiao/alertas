@@ -12,17 +12,66 @@ import (
 type Aviso struct {
     Title       string `xml:"title"`
     Link        string `xml:"link"`
-    Description struct {
-        Status      string `xml:"table>tr:nth-child(1)>td:nth-child(2)"`
-        Evento      string `xml:"table>tr:nth-child(2)>td"`
-        Severidade  string `xml:"table>tr:nth-child(3)>td"`
-        Início      string `xml:"table>tr:nth-child(4)>td"`
-        Fim         string `xml:"table>tr:nth-child(5)>td"`
-        Descrição   string `xml:"table>tr:nth-child(6)>td"`
-        Área        string `xml:"table>tr:nth-child(7)>td"`
-        LinkGráfico string `xml:"table>tr:nth-child(8)>td>a"`
-    } `xml:"description"`
-    Published string `xml:"pubDate"`
+    Description string `xml:"description"`
+    Published   string `xml:"pubDate"`
+}
+
+func extrairCampos(aviso *Aviso) error {
+    // Parse a descrição como HTML
+    descHTML, err := html.Parse(strings.NewReader(aviso.Description))
+    if err != nil {
+        return err
+    }
+
+    // Encontrar todas as células da tabela
+    cells := findTableCells(descHTML)
+
+    // Atribuir valores aos campos correspondentes
+    if len(cells) >= 8 {
+        aviso.Status = cells[0]
+        aviso.Evento = cells[1]
+        aviso.Severidade = cells[2]
+        aviso.Início = cells[3]
+        aviso.Fim = cells[4]
+        aviso.Descrição = cells[5]
+        aviso.Área = cells[6]
+        aviso.LinkGráfico = cells[7]
+    }
+
+    return nil
+}
+
+func findTableCells(n *html.Node) []string {
+    var cells []string
+
+    var f func(*html.Node)
+    f = func(n *html.Node) {
+        if n.Type == html.ElementNode && n.Data == "td" {
+            cells = append(cells, textContent(n))
+        }
+        for c := n.FirstChild; c != nil; c = c.NextSibling {
+            f(c)
+        }
+    }
+
+    f(n)
+
+    return cells
+}
+
+func textContent(n *html.Node) string {
+    var buffer bytes.Buffer
+    var f func(*html.Node)
+    f = func(n *html.Node) {
+        if n.Type == html.TextNode {
+            buffer.WriteString(n.Data)
+        }
+        for c := n.FirstChild; c != nil; c = c.NextSibling {
+            f(c)
+        }
+    }
+    f(n)
+    return buffer.String()
 }
 
 // Feed representa a estrutura de dados para um feed RSS
