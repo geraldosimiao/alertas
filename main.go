@@ -1,11 +1,14 @@
 package main
 
 import (
-	"encoding/xml"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-	"os"
+    "bytes"
+    "encoding/xml"
+    "fmt"
+    "io/ioutil"
+    "net/http"
+    "os"
+    "strings"
+    "golang.org/x/net/html"
 )
 
 // Aviso representa a estrutura de dados para um aviso meteorológico
