@@ -13,11 +13,11 @@ type Aviso struct {
 	Title     string `xml:"title"`
 	Link      string `xml:"link"`
 	Status    string `xml:"description>tr>th"`
-	Evento    string `xml:"description>tr>td"`
-	Severidade string `xml:"description>tr>td"`
-	Início    string `xml:"description>tr>td"`
-	Fim       string `xml:"description>tr>td"`
-	Área      string `xml:"description>tr>td"`
+	Evento    string `xml:"description>tr:nth-child(2)>td"`
+	Severidade string `xml:"description>tr:nth-child(3)>td"`
+	Início    string `xml:"description>tr:nth-child(4)>td"`
+	Fim       string `xml:"description>tr:nth-child(5)>td"`
+	Área      string `xml:"description>tr:nth-child(6)>td"`
 	Published string `xml:"pubDate"`
 }
 
