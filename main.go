@@ -102,12 +102,24 @@ func main() {
 		fmt.Printf("Link: %s\n", aviso.Link)
 		fmt.Printf("Data de Publicação: %s\n", aviso.Published)
 
-		// Extrair detalhes do HTML e exibir
+		// Extrair detalhes do HTML e exibir na ordem correta
 		detalhes := extrairDetalhesHTML(aviso.Description)
-		for chave, valor := range detalhes {
-			fmt.Printf("%-15s: %s\n", chave, valor)
-		}
+		printField("Status", detalhes["Status"])
+		printField("Evento", detalhes["Evento"])
+		printField("Severidade", detalhes["Severidade"])
+		printField("Início", detalhes["Início"])
+		printField("Fim", detalhes["Fim"])
+		printField("Descrição", detalhes["Descrição"])
+		printField("Área", detalhes["Área"])
+		printField("Link Gráfico", detalhes["Link Gráfico"])
 
 		fmt.Println("-----")
 	}
 }
+
+	// Função para imprimir campos na ordem específica
+	func printField(label string, value string) {
+		fmt.Printf("%-15s: %s\n", label, value)
+
+}
+
