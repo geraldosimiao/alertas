@@ -10,15 +10,15 @@ import (
 
 // Aviso representa a estrutura de dados para um aviso meteorológico
 type Aviso struct {
-	Title     string `xml:"title"`
-	Link      string `xml:"link"`
-	Status    string `xml:"description>tr>th"`
-	Evento    string `xml:"description>tr:nth-child(2)>td"`
-	Severidade string `xml:"description>tr:nth-child(3)>td"`
-	Início    string `xml:"description>tr:nth-child(4)>td"`
-	Fim       string `xml:"description>tr:nth-child(5)>td"`
-	Área      string `xml:"description>tr:nth-child(6)>td"`
-	Published string `xml:"pubDate"`
+    Title     string `xml:"title"`
+    Link      string `xml:"link"`
+    Status    string `xml:"description>tr>th"`               // Modificado
+    Evento    string `xml:"description>tr:nth-child(2)>td"` // Modificado
+    Severidade string `xml:"description>tr:nth-child(3)>td"`
+    Início    string `xml:"description>tr:nth-child(4)>td"`
+    Fim       string `xml:"description>tr:nth-child(5)>td"`
+    Área      string `xml:"description>tr:nth-child(6)>td"`
+    Published string `xml:"pubDate"`
 }
 
 // Feed representa a estrutura de dados para um feed RSS
