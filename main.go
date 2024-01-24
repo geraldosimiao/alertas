@@ -24,9 +24,11 @@ type Aviso struct {
 
 // Feed representa a estrutura de dados para um feed RSS
 type Feed struct {
-	XMLName xml.Name `xml:"rss"`
 	Channel struct {
-		Items []Aviso `xml:"channel>item"`
+		Title       string `xml:"title"`
+		Link        string `xml:"link"`
+		Description string `xml:"description"`
+		Items       []Aviso `xml:"item"`
 	} `xml:"channel"`
 }
 
