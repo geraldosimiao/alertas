@@ -45,7 +45,8 @@ func obterAvisos(apiURL string) ([]Aviso, error) {
 		return nil, err
 	}
 
-	fmt.Printf("Resposta da API:\n%s\n", conteúdo)
+	// Adicionar a linha abaixo para imprimir o XML completo
+	// fmt.Printf("Resposta da API:\n%s\n", conteúdo)
 
 	var feed Feed
 	err = xml.Unmarshal(conteúdo, &feed)
