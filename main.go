@@ -113,6 +113,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Linhas para imprimir informações dos avisos
+	fmt.Printf("Avisos retornados: %d\n", len(avisos))
+	for _, aviso := range avisos {
+    		fmt.Printf("Severidade: %s\n", aviso.Severidade)
+    	// Adicionar mais informações conforme necessário
+	}
+
 	fmt.Printf("Avisos encontrados para o critério de filtro '%s': %d\n", critérioFiltro, len(avisos))
 
 	if len(avisos) == 0 {
