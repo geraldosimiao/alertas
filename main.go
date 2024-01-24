@@ -71,53 +71,53 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Para imprimir informações dos avisos
-	fmt.Printf("Avisos retornados: %d\n", len(avisos))
+	// Descomentar a linha abaixo para imprimir informações dos avisos
+	// fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		fmt.Printf("Aviso #%d\n", i+1)
 		fmt.Printf("Título: %s\n", aviso.Title)
 		fmt.Printf("Link: %s\n", aviso.Link)
 		fmt.Printf("Data de Publicação: %s\n", aviso.Published)
 		
-		fmt.Println("Detalhes:")
-		fmt.Printf("%-15s: %s\n", "Status", aviso.Status)
-		fmt.Printf("%-15s: %s\n", "Evento", aviso.Evento)
-		fmt.Printf("%-15s: %s\n", "Severidade", aviso.Severidade)
-		fmt.Printf("%-15s: %s\n", "Início", aviso.Início)
-		fmt.Printf("%-15s: %s\n", "Fim", aviso.Fim)
-		fmt.Printf("%-15s: %s\n", "Descrição", aviso.Descrição)
-		fmt.Printf("%-15s: %s\n", "Área", aviso.Área)
-		fmt.Printf("%-15s: %s\n", "Link Gráfico", aviso.LinkGráfico)
-		
-		fmt.Println("-----")
 
+	// Parse HTML dentro do campo de descrição
+	descricaoHTML := aviso.Description
+	reader := strings.NewReader(descricaoHTML)
+	tokenizer := html.NewTokenizer(reader)
 
-		// Agora, você precisa analisar o conteúdo HTML da descrição
-		// Aqui, estamos extraindo informações usando strings e HTML parsing
-		reader := strings.NewReader(aviso.Description)
-		tokenizer := html.NewTokenizer(reader)
+	// Mapa para armazenar os detalhes do aviso
+	detalhes := make(map[string]string)
 
-		for {
-			tokenType := tokenizer.Next()
-			switch tokenType {
-			case html.ErrorToken:
-				return
-			case html.StartTagToken, html.SelfClosingTagToken:
-				token := tokenizer.Token()
-				if token.Data == "th" {
-					tokenType = tokenizer.Next()
-					if tokenType == html.TextToken {
-						fmt.Printf("%s: ", token.Data)
-						fmt.Println(tokenizer.Token().Data)
-					}
-				} else if token.Data == "td" {
-					tokenType = tokenizer.Next()
-					if tokenType == html.TextToken {
-						fmt.Printf("%s\n", tokenizer.Token().Data)
-					}
+	// Variável para rastrear a chave atual enquanto percorremos o HTML
+	var chaveAtual string
+
+	for {
+		tokenType := tokenizer.Next()
+		switch tokenType {
+		case html.ErrorToken:
+			break
+		case html.StartTagToken, html.SelfClosingTagToken:
+			token := tokenizer.Token()
+			if token.Data == "th" {
+				tokenType = tokenizer.Next()
+				if tokenType == html.TextToken {
+					// Remover espaços extras e definir como chave atual
+					chaveAtual = strings.TrimSpace(tokenizer.Token().Data)
+				}
+			} else if token.Data == "td" {
+				tokenType = tokenizer.Next()
+				if tokenType == html.TextToken {
+					// Adicionar valor associado à chave atual no mapa
+					detalhes[chaveAtual] = strings.TrimSpace(tokenizer.Token().Data)
 				}
 			}
 		}
-		fmt.Println("-----")
 	}
+
+	// Exibir detalhes do aviso
+	for chave, valor := range detalhes {
+		fmt.Printf("%-15s: %s\n", chave, valor)
+	}
+
+	fmt.Println("-----")
 }
