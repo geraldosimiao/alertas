@@ -31,24 +31,28 @@ type Feed struct {
 }
 
 func obterAvisos(apiURL string) ([]Aviso, error) {
-	resposta, err := http.Get(apiURL)
-	if err != nil {
-		return nil, err
-	}
-	defer resposta.Body.Close()
+    fmt.Printf("Fazendo solicitação para: %s\n", apiURL)
 
-	conteúdo, err := ioutil.ReadAll(resposta.Body)
-	if err != nil {
-		return nil, err
-	}
+    resposta, err := http.Get(apiURL)
+    if err != nil {
+        return nil, err
+    }
+    defer resposta.Body.Close()
 
-	var feed Feed
-	err = xml.Unmarshal(conteúdo, &feed)
-	if err != nil {
-		return nil, err
-	}
+    conteúdo, err := ioutil.ReadAll(resposta.Body)
+    if err != nil {
+        return nil, err
+    }
 
-	return feed.Channel.Items, nil
+    fmt.Printf("Resposta da API:\n%s\n", conteúdo)
+
+    var feed Feed
+    err = xml.Unmarshal(conteúdo, &feed)
+    if err != nil {
+        return nil, err
+    }
+
+    return feed.Channel.Items, nil
 }
 
 func main() {
