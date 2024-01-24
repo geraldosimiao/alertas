@@ -79,7 +79,4 @@ func main() {
 		fmt.Printf("Área: %s\n", aviso.Área)
 		fmt.Println("-----")
 	}
-
-	// Ajuste para imprimir a contagem correta
-	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 }
