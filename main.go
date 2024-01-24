@@ -55,8 +55,6 @@ func obterAvisos(apiURL string) ([]Aviso, error) {
     return feed.Channel.Items, nil
 }
 
-// ...
-
 func main() {
 	apiURL := "https://apiprevmet3.inmet.gov.br/avisos/rss"
 
@@ -66,7 +64,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Adicione estas linhas para imprimir informações dos avisos
+	// Para imprimir informações dos avisos
 	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		fmt.Printf("Aviso #%d\n", i+1)
