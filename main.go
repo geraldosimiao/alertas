@@ -67,9 +67,22 @@ func main() {
 	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		fmt.Printf("Aviso #%d\n", i+1)
-		fmt.Printf("Título: %s\n", aviso.Title)
+		fmt.Printf("Título: %s\n", aviso.Título)
 		fmt.Printf("Link: %s\n", aviso.Link)
-		fmt.Printf("Data de Publicação: %s\n", aviso.Published)
+		fmt.Printf("Data de Publicação: %s\n", aviso.DataPublicação)
+		
+		fmt.Println("Detalhes:")
+		fmt.Printf("%-15s: %s\n", "Status", aviso.Status)
+		fmt.Printf("%-15s: %s\n", "Evento", aviso.Evento)
+		fmt.Printf("%-15s: %s\n", "Severidade", aviso.Severidade)
+		fmt.Printf("%-15s: %s\n", "Início", aviso.Início)
+		fmt.Printf("%-15s: %s\n", "Fim", aviso.Fim)
+		fmt.Printf("%-15s: %s\n", "Descrição", aviso.Descrição)
+		fmt.Printf("%-15s: %s\n", "Área", aviso.Área)
+		fmt.Printf("%-15s: %s\n", "Link Gráfico", aviso.LinkGráfico)
+		
+		fmt.Println("-----")
+
 
 		// Agora, você precisa analisar o conteúdo HTML da descrição
 		// Aqui, estamos extraindo informações usando strings e HTML parsing
