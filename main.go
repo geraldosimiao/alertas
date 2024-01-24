@@ -93,14 +93,18 @@ func atendeCritérios(aviso Aviso, filtro map[string]string) bool {
 }
 
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Println("Por favor, forneça um critério de filtro. Exemplo: go run main.go Crítica")
+		os.Exit(1)
+	}
+
+	critérioFiltro := os.Args[1]
+
 	apiURL := "https://apiprevmet3.inmet.gov.br/avisos/rss"
 
-	// Exemplo de filtro (substitua com seus próprios critérios)
+	// Exemplo de filtro baseado no argumento de linha de comando
 	filtro := map[string]string{
-		"status":     "Em Andamento",
-		"evento":     "Chuvas Intensas",
-		"severidade": "Crítica",
-		// Adicione mais critérios conforme necessário
+		"severidade": critérioFiltro,
 	}
 
 	avisos, err := obterAvisos(apiURL, filtro)
@@ -110,7 +114,7 @@ func main() {
 	}
 
 	if len(avisos) == 0 {
-		fmt.Println("Nenhum aviso encontrado.")
+		fmt.Println("Nenhum aviso encontrado para o critério de filtro:", critérioFiltro)
 	} else {
 		for _, aviso := range avisos {
 			fmt.Println("Título:", aviso.Title)
