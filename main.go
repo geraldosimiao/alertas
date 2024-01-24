@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"golang.org/x/net/html"
 )
 
 // Aviso representa a estrutura de dados para um aviso meteorológico
