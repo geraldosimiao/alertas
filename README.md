@@ -34,3 +34,6 @@ Aqui um exemplo:
 
     go run main.go 15
 (isso vai retornar os avisos do INMET nas últimas 15 horas)
+
+# Em construção
+Ainda vou preparar instruções para compilar ele em go, e também ainda pretendo empacotar em RPM e distribuir via repositorio copr pro Fedora.
