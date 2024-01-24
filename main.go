@@ -122,7 +122,6 @@ func printField(label string, value string) {
 	fmt.Printf("%-15s: %s\n", label, value)
 }
 
-
 // Função principal
 func main() {
 	// Aceitar um argumento de linha de comando para o intervalo de tempo em horas
@@ -153,29 +152,29 @@ func main() {
 		// Converter a data de publicação para o tipo time.Time
 		dataPublicacao, err := time.Parse("Mon, 02 Jan 2006 15:04:05 -0700", aviso.Published)
 		if err == nil {
-			fmt.Printf("Data de Publicação: %s\n", dataPublicacao.Format("Mon, 02 Jan 2006 15:04:05 -0700"))
+			if dataPublicacao.After(dataCorte) {
+				fmt.Printf("Data de Publicação: %s\n", dataPublicacao.Format("Mon, 02 Jan 2006 15:04:05 -0700"))
+
+				fmt.Printf("Aviso #%d\n", i+1)
+				fmt.Printf("Título: %s\n", aviso.Title)
+				fmt.Printf("Link: %s\n", aviso.Link)
+				fmt.Printf("Data de Publicação: %s\n", aviso.Published)
+
+				// Extrair detalhes do HTML e exibir na ordem correta
+				detalhes := extrairDetalhesHTML(aviso.Description)
+				printField("Status", detalhes["Status"])
+				printField("Evento", detalhes["Evento"])
+				printField("Severidade", detalhes["Severidade"])
+				printField("Início", detalhes["Início"])
+				printField("Fim", detalhes["Fim"])
+				printField("Descrição", detalhes["Descrição"])
+				printField("Área", detalhes["Área"])
+				printField("Link Gráfico", detalhes["Link Gráfico"])
+
+				fmt.Println("-----")
+			}
 		} else {
 			fmt.Println("Erro ao analisar a data de publicação:", err)
-		}
-
-		if dataPublicacao.After(dataCorte) {
-			fmt.Printf("Aviso #%d\n", i+1)
-			fmt.Printf("Título: %s\n", aviso.Title)
-			fmt.Printf("Link: %s\n", aviso.Link)
-			fmt.Printf("Data de Publicação: %s\n", aviso.Published)
-
-			// Extrair detalhes do HTML e exibir na ordem correta
-			detalhes := extrairDetalhesHTML(aviso.Description)
-			printField("Status", detalhes["Status"])
-			printField("Evento", detalhes["Evento"])
-			printField("Severidade", detalhes["Severidade"])
-			printField("Início", detalhes["Início"])
-			printField("Fim", detalhes["Fim"])
-			printField("Descrição", detalhes["Descrição"])
-			printField("Área", detalhes["Área"])
-			printField("Link Gráfico", detalhes["Link Gráfico"])
-
-			fmt.Println("-----")
 		}
 	}
 }
