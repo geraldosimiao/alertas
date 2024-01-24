@@ -71,53 +71,53 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Descomentar a linha abaixo para imprimir informações dos avisos
-	// fmt.Printf("Avisos retornados: %d\n", len(avisos))
+	// Para imprimir informações dos avisos
+	fmt.Printf("Avisos retornados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		fmt.Printf("Aviso #%d\n", i+1)
 		fmt.Printf("Título: %s\n", aviso.Title)
 		fmt.Printf("Link: %s\n", aviso.Link)
 		fmt.Printf("Data de Publicação: %s\n", aviso.Published)
-		
 
-	// Parse HTML dentro do campo de descrição
-	descricaoHTML := aviso.Description
-	reader := strings.NewReader(descricaoHTML)
-	tokenizer := html.NewTokenizer(reader)
+		// Parse HTML dentro do campo de descrição
+		descricaoHTML := aviso.Description
+		reader := strings.NewReader(descricaoHTML)
+		tokenizer := html.NewTokenizer(reader)
 
-	// Mapa para armazenar os detalhes do aviso
-	detalhes := make(map[string]string)
+		// Mapa para armazenar os detalhes do aviso
+		detalhes := make(map[string]string)
 
-	// Variável para rastrear a chave atual enquanto percorremos o HTML
-	var chaveAtual string
+		// Variável para rastrear a chave atual enquanto percorremos o HTML
+		var chaveAtual string
 
-	for {
-		tokenType := tokenizer.Next()
-		switch tokenType {
-		case html.ErrorToken:
-			break
-		case html.StartTagToken, html.SelfClosingTagToken:
-			token := tokenizer.Token()
-			if token.Data == "th" {
-				tokenType = tokenizer.Next()
-				if tokenType == html.TextToken {
-					// Remover espaços extras e definir como chave atual
-					chaveAtual = strings.TrimSpace(tokenizer.Token().Data)
-				}
-			} else if token.Data == "td" {
-				tokenType = tokenizer.Next()
-				if tokenType == html.TextToken {
-					// Adicionar valor associado à chave atual no mapa
-					detalhes[chaveAtual] = strings.TrimSpace(tokenizer.Token().Data)
+		for {
+			tokenType := tokenizer.Next()
+			switch tokenType {
+			case html.ErrorToken:
+				break
+			case html.StartTagToken, html.SelfClosingTagToken:
+				token := tokenizer.Token()
+				if token.Data == "th" {
+					tokenType = tokenizer.Next()
+					if tokenType == html.TextToken {
+						// Remover espaços extras e definir como chave atual
+						chaveAtual = strings.TrimSpace(tokenizer.Token().Data)
+					}
+				} else if token.Data == "td" {
+					tokenType = tokenizer.Next()
+					if tokenType == html.TextToken {
+						// Adicionar valor associado à chave atual no mapa
+						detalhes[chaveAtual] = strings.TrimSpace(tokenizer.Token().Data)
+					}
 				}
 			}
 		}
-	}
 
-	// Exibir detalhes do aviso
-	for chave, valor := range detalhes {
-		fmt.Printf("%-15s: %s\n", chave, valor)
-	}
+		// Exibir detalhes do aviso
+		for chave, valor := range detalhes {
+			fmt.Printf("%-15s: %s\n", chave, valor)
+		}
 
-	fmt.Println("-----")
+		fmt.Println("-----")
+	}
 }
