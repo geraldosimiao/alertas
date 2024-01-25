@@ -32,7 +32,7 @@ Ex. ```./alertas 12``` vai retornar os avisos do INMET nas últimas 12 horas.
 
 
 # Em construção
-Ainda pretendo empacotar em RPM e distribuir via repositorio copr pro Fedora.
+Em breve irei distribuir via repositorio copr pro Fedora, mas enquanto isso você já pode baixar o rpm que está em "release" ou então o proprio binário já compilado.
 
 Autor: [Geraldo Simião](https://fedoraproject.org/wiki/User:Geraldosimiao)
 
