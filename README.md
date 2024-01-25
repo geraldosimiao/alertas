@@ -1,5 +1,5 @@
 # Alertas
-Alertas é um programa que reúne e filtra avisos meteorológicos do INMET [Instuto Nacional de Meteorologia](https://alertas2.inmet.gov.br/)  
+Alertas é um programa que reúne e filtra avisos meteorológicos do INMET [Instituto Nacional de Meteorologia](https://alertas2.inmet.gov.br/)  
 
 ## Dependências
 Este programa usa a biblioteca padrão para fazer requisições HTTP (net/http) e analisar XML (encoding/xml). Certifique-se de ter uma versão mais recente do Go que inclua essas bibliotecas.
