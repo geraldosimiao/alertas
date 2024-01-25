@@ -3,7 +3,7 @@
 
 # https://github.com/geraldosimiao/alertas.git
 %global goipath         github.com/geraldosimiao/alertas
-%global tag             0.0.1
+%global tag             0.0.2
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---
@@ -22,11 +22,11 @@
 Alertas is a program written in Go that gathers and filters weather warnings from INMET-Instuto Nacional de Meteorologia https://alertas2.inmet.gov.br/}
 
 %global golicenses      LICENSE
-%global godocs          README.md
+%global godocs          README.md DOC.md
 
 Name:           alertas
-Version:        0
-Release:        %autorelease -p
+Version:        0.1
+Release:        1%{?dist}
 Summary:        Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute
 
 License:        GPL-3.0-only
@@ -59,11 +59,11 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %files
 %license LICENSE
-%doc README.md
+%doc README.md DOC.md
 %{_bindir}/*
 
 %gopkgfiles
 
 %changelog
-* Thu Jan 25 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0-1
+* Thu Jan 25 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0.1
 - Initial build
