@@ -28,6 +28,8 @@ Para compilar e executar um programa em Go, geralmente, você não precisa de mu
     ./alertas <número de horas>
 Ex. ```./alertas 12``` vai retornar os avisos do INMET nas últimas 12 horas.
 
+![Screenshot_20240124_224503](https://github.com/geraldosimiao/alertas/assets/72357821/880e85b0-41af-4f2e-86ac-e012909704a3)
+
 
 # Em construção
 Ainda pretendo empacotar em RPM e distribuir via repositorio copr pro Fedora.
