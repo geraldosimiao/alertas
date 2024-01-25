@@ -3,7 +3,7 @@
 
 # https://github.com/geraldosimiao/alertas.git
 %global goipath         github.com/geraldosimiao/alertas.git
-%global commit          beed79235d8e9240c785bcd9330a9ef13d11b93b
+%global tag             0.0.1
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---
