@@ -19,7 +19,7 @@
 
 
 %global common_description %{expand:
-Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute}
+Alertas is a program written in Go that gathers and filters weather warnings from INMET-Instuto Nacional de Meteorologia https://alertas2.inmet.gov.br/}
 
 %global golicenses      LICENSE
 %global godocs          README.md
@@ -27,7 +27,7 @@ Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Instit
 Name:           alertas
 Version:        0
 Release:        %autorelease -p
-Summary:        None
+Summary:        Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute
 
 License:        GPL-3.0-only
 URL:            %{gourl}
@@ -65,4 +65,5 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %gopkgfiles
 
 %changelog
-%autochangelog
+* Thu Jan 25 2024 Geraldo Simião <geraldosimiao@fedoraproject.org> - 0-1
+- Initial build
