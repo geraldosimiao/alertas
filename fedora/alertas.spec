@@ -2,7 +2,7 @@
 %bcond_without check
 
 # https://github.com/geraldosimiao/alertas.git
-%global goipath         github.com/geraldosimiao/alertas.git
+%global goipath         github.com/geraldosimiao/alertas
 %global tag             0.0.1
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
@@ -19,12 +19,12 @@
 
 
 %global common_description %{expand:
-Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute
+Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           golang-github-geraldosimiao-alertas
+Name:           alertas
 Version:        0
 Release:        %autorelease -p
 Summary:        None
