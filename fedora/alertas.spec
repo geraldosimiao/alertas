@@ -45,7 +45,7 @@ Source:         %{gosource}
 %go_generate_buildrequires
 
 %build
-%gobuild -o %{gobuilddir}/bin/alertas.git %{goipath}
+%gobuild -o %{gobuilddir}/bin/alertas %{goipath}
 
 %install
 %gopkginstall
