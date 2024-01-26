@@ -32,7 +32,8 @@ Ex. ```./alertas 12``` vai retornar os avisos do INMET nas últimas 12 horas.
 
 
 # Instalação em Fedora (RPM)
-Se tiver Fedora Linux e desejar instalar via repositorio copr, pode rodar os comandos como descrito no [link do repositório](https://copr.fedorainfracloud.org/coprs/geraldosimiao/alertas/). Se preferir somente baixar um rpm e instalar manualmente, pode usar o pacote que está em "releases".
+Se tiver Fedora Linux e desejar instalar via repositorio copr, pode rodar os comandos como descrito no [link do repositório](https://copr.fedorainfracloud.org/coprs/geraldosimiao/alertas/). Se preferir somente baixar um rpm e instalar manualmente, pode usar o pacote que está em [releases](https://github.com/geraldosimiao/alertas/releases).
 
 Autor: [Geraldo Simião](https://fedoraproject.org/wiki/User:Geraldosimiao)
+Fonte dos dados: INMET [Alert-AS - Centro Virtual para Avisos de Eventos Meteorológicos Severos](https://alertas2.inmet.gov.br/)
 
