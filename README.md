@@ -31,8 +31,8 @@ Ex. ```./alertas 12``` vai retornar os avisos do INMET nas últimas 12 horas.
 ![Screenshot_20240124_224503](https://github.com/geraldosimiao/alertas/assets/72357821/880e85b0-41af-4f2e-86ac-e012909704a3)
 
 
-# Em construção
-Em breve irei distribuir via repositorio copr pro Fedora, mas enquanto isso você já pode baixar o rpm que está em "release" ou então o proprio binário já compilado.
+# Instalação em Fedora (RPM)
+Se tiver Fedora Linux e desejar instalar via repositorio copr, pode rodar os comandos como descrito no [link do repositório](https://copr.fedorainfracloud.org/coprs/geraldosimiao/alertas/). Se preferir somente baixar um rpm e instalar manualmente, pode usar o pacote que está em "releases".
 
 Autor: [Geraldo Simião](https://fedoraproject.org/wiki/User:Geraldosimiao)
 
