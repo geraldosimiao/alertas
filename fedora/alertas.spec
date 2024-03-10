@@ -3,7 +3,7 @@
 
 # https://github.com/geraldosimiao/alertas.git
 %global goipath         github.com/geraldosimiao/alertas
-%global tag             0.0.2
+%global tag             0.0.3
 
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
 # ---
@@ -26,7 +26,7 @@ Alertas is a program written in Go that gathers and filters weather warnings fro
 
 Name:           alertas
 Version:        0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Go software to fetch data from INMET, the Brazilian Nacional Meteorologic Institute
 
 License:        GPL-3.0-only
