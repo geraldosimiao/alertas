@@ -150,7 +150,7 @@ func main() {
 	avisosFiltrados := 0
 
 	// Exibir avisos que estão após a data de corte
-	fmt.Printf("Avisos retornados: %d\n", len(avisos))
+	fmt.Printf("Total de avisos encontrados: %d\n", len(avisos))
 	for i, aviso := range avisos {
 		// Converter a data de publicação para o tipo time.Time
 		dataPublicacao, err := time.Parse("Mon, 02 Jan 2006 15:04:05 -0700", aviso.Published)
@@ -180,10 +180,10 @@ func main() {
 			printField("Área", detalhes["Área"])
 			printField("Link Gráfico", detalhes["Link Gráfico"])
 
-			fmt.Println("-----")
+			fmt.Println("###################################################")
 		}
 	}
 
 	// Exibir o total de avisos filtrados
-	fmt.Printf("Avisos filtrados: %d\n", avisosFiltrados)
+	fmt.Printf("Avisos correspondendo ao critério do filtro: %d\n", avisosFiltrados)
 }
